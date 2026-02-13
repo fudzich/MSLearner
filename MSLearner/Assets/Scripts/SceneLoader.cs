@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    public float transitionTime = 4f;
+    //private ButtonAnimation ButtonAnimation;
+
     //public static SceneLoader instance;
 
     //private void Awake(){
@@ -20,22 +23,22 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadASLToEnglish()
     {
-        SceneManager.LoadScene("ASLToEnglish");
+        StartCoroutine(TransitionAndLoadScene("ASLToEnglish"));
     }
 
     public void LoadASLTranslator()
     {
-        SceneManager.LoadScene("ASLTranslator");
+        StartCoroutine(TransitionAndLoadScene("ASLTranslator"));
     }
 
     public void LoadEnglishToASL()
     {
-        SceneManager.LoadScene("EnglishToASL");
+        StartCoroutine(TransitionAndLoadScene("EnglishToASL"));
     }
 
     public void LoadLearningMaterials()
     {
-        SceneManager.LoadScene("LearningMaterials");
+        StartCoroutine(TransitionAndLoadScene("LearningMaterials"));
     }
 
     public void LoadSampleScene()
@@ -50,5 +53,17 @@ public class SceneLoader : MonoBehaviour
             // Quit the application
             Application.Quit();
             #endif
+    }
+
+    IEnumerator TransitionAndLoadScene(string sceneToLoad)
+    {
+        //Debug.Log("2");
+        //ButtonAnimation = GetComponent<ButtonAnimation>();
+        //Debug.Log("3");
+        //ButtonAnimation.switchButton();
+        //Debug.Log("time started");
+        yield return new WaitForSeconds(transitionTime);
+        //Debug.Log("time ended");
+        SceneManager.LoadScene(sceneToLoad);
     }
 }
