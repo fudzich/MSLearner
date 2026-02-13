@@ -5,18 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public static SceneLoader instance;
+    //public static SceneLoader instance;
 
-    private void Awake(){
-        if(instance == null){
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else{
-            Destroy(gameObject);
-        }
+    //private void Awake(){
+    //    if(instance == null){
+    //        instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //    else{
+    //        Destroy(gameObject);
+    //    }
         
-    }
+    //}
 
     public void LoadASLToEnglish()
     {
@@ -25,7 +25,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadASLTranslator()
     {
-        SceneManager.LoadScene("ASLToTranslator");
+        SceneManager.LoadScene("ASLTranslator");
     }
 
     public void LoadEnglishToASL()
