@@ -43,7 +43,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadSampleScene()
     {
-        SceneManager.LoadScene("SampleScene");
+        StartCoroutine(TransitionAndLoadScene("SampleScene"));
     }
 
     public void Exit(){
