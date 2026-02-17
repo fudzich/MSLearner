@@ -82,7 +82,7 @@ public class ASLDictionary : MonoBehaviour
     [SerializeField]
     private GameObject z;
 
-    public Dictionary<string, List<GameObject>> ASLwords = new Dictionary<string, List<GameObject>>();
+    public Dictionary<string, List<GameObject>> ASLwords;
 
     void Awake()
     {

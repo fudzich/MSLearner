@@ -12,6 +12,7 @@ public class InputFieldController : MonoBehaviour
     public string currentInput; // The player's current input
 
     private SceneLoader sceneLoader;
+    private ASLAnimator aslAnimator;
 
     void Awake()
     {
@@ -22,6 +23,9 @@ public class InputFieldController : MonoBehaviour
         sceneLoader = GetComponent<SceneLoader>();
 
         Debug.Log("The word is: " + selectedWord);
+
+        aslAnimator = GetComponent<ASLAnimator>();
+        aslAnimator.ShowHands(selectedWord);
     }
 
     public void CheckInput()
