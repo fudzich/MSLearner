@@ -113,21 +113,23 @@ public class ASLAnimator : MonoBehaviour
         {
             
             // Instantiate the hand prefab for the letter
-            Debug.Log(letter);
+            //Debug.Log(letter);
             if (currentHand != null)
             {
                 Destroy(currentHand);
-                Debug.Log("Destroy");
+                //Debug.Log("Destroy");
             }
 
-            Debug.Log($"Processing letter: {letter}");
+            //Debug.Log($"Processing letter: {letter}");
             GameObject handPrefab = GetHandPrefab(letter);
-            Debug.Log($"Prefab found: {handPrefab != null}");
+            //Debug.Log($"Prefab found: {handPrefab != null}");
 
             if (handPrefab != null)
             {
-                Debug.Log("Inst");
-                currentHand = Instantiate(handPrefab, new Vector3(-0.026f, 0.182f, -0.391f),Quaternion.identity, container);
+                //Debug.Log("Inst");
+                currentHand = Instantiate(handPrefab, new Vector3(-1.8738f, 26.137f, 156.1f), Quaternion.Euler(90f, 0f, 0f));
+                currentHand.transform.localScale *= 50f;
+                //SpawnHand(handPrefab);
             }
 
             // Wait for the transition duration or until stopped
@@ -148,6 +150,37 @@ public class ASLAnimator : MonoBehaviour
         {
             AddSpinComponent();
         }
+    }
+
+    private void SpawnHand(GameObject handPrefab)
+    {
+        // Get the container's renderer to access bounds
+        Renderer containerRenderer = container.GetComponent<Renderer>();
+        if (containerRenderer == null)
+        {
+            Debug.LogError("Container does not have a Renderer component.");
+            return;
+        }
+
+        Vector3 containerSize = containerRenderer.bounds.size;
+
+        // Determine scale for the hand (e.g., half the container size)
+        Vector3 handScale = containerSize * 0.5f;
+
+        // Instantiate the hand as a child of the container
+        GameObject handInstance = Instantiate(handPrefab, container.transform);
+        handInstance.transform.localScale = handScale;
+
+        // Set a fixed local position inside the container
+        // For example, at the center or a specific point
+        Vector3 fixedLocalPosition = Vector3.zero; // Center of the container
+        // Or specify specific coordinates within bounds:
+        // e.g., new Vector3(0.2f, 0.1f, -0.3f)
+
+        handInstance.transform.localPosition = fixedLocalPosition;
+
+        // Assign to currentHand
+        currentHand = handInstance;
     }
 
     private GameObject GetHandPrefab(char letter)
