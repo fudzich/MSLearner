@@ -99,8 +99,11 @@ public class ASLAnimator : MonoBehaviour
 
     public Transform container;
 
-    public void ShowHands(string word)
+    private string word;
+
+    public void ShowHands(string chosenWord)
     {
+        word = chosenWord;
         StartCoroutine(AnimateWord(word));
         stopButton.onClick.AddListener(StopAnimation);
     }
@@ -127,9 +130,8 @@ public class ASLAnimator : MonoBehaviour
             if (handPrefab != null)
             {
                 //Debug.Log("Inst");
-                currentHand = Instantiate(handPrefab, new Vector3(-1.8738f, 26.137f, 156.1f), Quaternion.Euler(90f, 0f, 0f));
+                currentHand = Instantiate(handPrefab, new Vector3(-1.8738f, 26.137f, 130f), Quaternion.Euler(90f, 0f, 0f));
                 currentHand.transform.localScale *= 50f;
-                //SpawnHand(handPrefab);
             }
 
             // Wait for the transition duration or until stopped
@@ -150,37 +152,6 @@ public class ASLAnimator : MonoBehaviour
         {
             AddSpinComponent();
         }
-    }
-
-    private void SpawnHand(GameObject handPrefab)
-    {
-        // Get the container's renderer to access bounds
-        Renderer containerRenderer = container.GetComponent<Renderer>();
-        if (containerRenderer == null)
-        {
-            Debug.LogError("Container does not have a Renderer component.");
-            return;
-        }
-
-        Vector3 containerSize = containerRenderer.bounds.size;
-
-        // Determine scale for the hand (e.g., half the container size)
-        Vector3 handScale = containerSize * 0.5f;
-
-        // Instantiate the hand as a child of the container
-        GameObject handInstance = Instantiate(handPrefab, container.transform);
-        handInstance.transform.localScale = handScale;
-
-        // Set a fixed local position inside the container
-        // For example, at the center or a specific point
-        Vector3 fixedLocalPosition = Vector3.zero; // Center of the container
-        // Or specify specific coordinates within bounds:
-        // e.g., new Vector3(0.2f, 0.1f, -0.3f)
-
-        handInstance.transform.localPosition = fixedLocalPosition;
-
-        // Assign to currentHand
-        currentHand = handInstance;
     }
 
     private GameObject GetHandPrefab(char letter)
@@ -219,11 +190,19 @@ public class ASLAnimator : MonoBehaviour
 
     public void StopAnimation()
     {
-        isAnimating = false;
-        if (currentHand != null)
+        if(isAnimating)
         {
-            AddSpinComponent();
+            isAnimating = !isAnimating;
+            if (currentHand != null)
+            {
+                AddSpinComponent();
+            }
         }
+        else{
+            isAnimating = !isAnimating;
+            StartCoroutine(AnimateWord(word));
+        }
+
     }
 
     private void AddSpinComponent()
@@ -248,7 +227,7 @@ public class SpinHand : MonoBehaviour
     {
         if (spin)
         {
-            transform.Rotate(Vector3.up, spinSpeed * Time.deltaTime);
+            transform.Rotate(0, 0, spinSpeed * Time.deltaTime);
         }
     }
 }
