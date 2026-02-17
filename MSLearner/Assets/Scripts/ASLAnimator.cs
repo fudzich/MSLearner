@@ -85,7 +85,7 @@ public class ASLAnimator : MonoBehaviour
 
     [Header("Animation Settings")]
     public float transitionDuration = 1f; // Duration of transition between hands
-    public Button stopButton;
+    public GameObject restartButton;
 
     [Header("Spinning Settings")]
     public float spinSpeed = 100f; // Speed of spinning when stopped
@@ -98,6 +98,7 @@ public class ASLAnimator : MonoBehaviour
     public Vector3 instantiatePosition = new Vector3(-0.043f, 0.216f, 0f); // Position for instantiation
 
     public Transform container;
+    private bool isPaused = false;
 
     private string word;
 
@@ -105,7 +106,7 @@ public class ASLAnimator : MonoBehaviour
     {
         word = chosenWord;
         StartCoroutine(AnimateWord(word));
-        stopButton.onClick.AddListener(StopAnimation);
+        //restartButton.onClick.AddListener(RestartAnimation);
     }
 
     private IEnumerator AnimateWord(string word)
@@ -114,6 +115,10 @@ public class ASLAnimator : MonoBehaviour
 
         foreach (char letter in word)
         {
+            while (isPaused)
+            {
+                yield return null; // Wait for next frame
+            }
             
             // Instantiate the hand prefab for the letter
             //Debug.Log(letter);
@@ -147,6 +152,8 @@ public class ASLAnimator : MonoBehaviour
         }
 
         isAnimating = false;
+
+        restartButton.SetActive(true);
 
         if (currentHand != null && startSpinningOnStop)
         {
@@ -190,19 +197,25 @@ public class ASLAnimator : MonoBehaviour
 
     public void StopAnimation()
     {
-        if(isAnimating)
+        if(!isPaused)
         {
-            isAnimating = !isAnimating;
+            isPaused = !isPaused;
             if (currentHand != null)
             {
+                //Debug.Log("add");
                 AddSpinComponent();
             }
         }
         else{
-            isAnimating = !isAnimating;
-            StartCoroutine(AnimateWord(word));
+            isPaused = !isPaused;
         }
 
+    }
+
+    public void RestartAnimation()
+    {
+        restartButton.SetActive(false);
+        StartCoroutine(AnimateWord(word));
     }
 
     private void AddSpinComponent()
