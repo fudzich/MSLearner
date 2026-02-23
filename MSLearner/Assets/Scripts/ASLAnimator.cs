@@ -228,7 +228,17 @@ public class ASLAnimator : MonoBehaviour
         spin.spinSpeed = spinSpeed;
         spin.enabled = true;
     }
+
+    public void stopAndDestroy(){
+        isAnimating = false;
+        if (currentHand != null)
+        {
+            Destroy(currentHand);
+        }
+    }
 }
+
+
 
 // Script to spin the hand
 public class SpinHand : MonoBehaviour

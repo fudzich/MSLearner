@@ -95,6 +95,7 @@ public class InputButton : MonoBehaviour
     private Sprite z;
 
     private SceneLoader sceneLoader;
+    private ButtonAnimation buttonAnimation;
     
     void Awake()
     {
@@ -105,6 +106,7 @@ public class InputButton : MonoBehaviour
         ShowText.text = selectedWord;
 
         sceneLoader = GetComponent<SceneLoader>();
+        buttonAnimation = GetComponent<ButtonAnimation>();
     }
 
     // Call this method when a letter button is pressed
@@ -131,6 +133,7 @@ public class InputButton : MonoBehaviour
         {
             Debug.Log("Correct! The word is: " + selectedWord);
             // Handle success, e.g., load next word or show message
+            buttonAnimation.switchButton();
             sceneLoader.LoadEnglishToASL();
         }
         else

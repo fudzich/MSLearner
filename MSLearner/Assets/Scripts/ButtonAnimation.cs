@@ -11,11 +11,13 @@ public class ButtonAnimation : MonoBehaviour
         {
             if (button != null)
             {
+                Debug.Log("button - OK");
                 Animator animator = button.GetComponent<Animator>();
                 if(animator != null)
                 {
                     bool slide = animator.GetBool("switch");
                     animator.SetBool("switch", !slide);
+                    Debug.Log("animator - OK");
                 }
             }
         }
