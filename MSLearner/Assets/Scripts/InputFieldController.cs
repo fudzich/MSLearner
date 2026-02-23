@@ -14,6 +14,10 @@ public class InputFieldController : MonoBehaviour
     private SceneLoader sceneLoader;
     private ASLAnimator aslAnimator;
 
+    public GameObject startButton;
+
+
+
     void Awake()
     {
         ResetInput();
@@ -25,7 +29,11 @@ public class InputFieldController : MonoBehaviour
         Debug.Log("The word is: " + selectedWord);
 
         aslAnimator = GetComponent<ASLAnimator>();
+    }
+
+    public void StartExercise(){
         aslAnimator.ShowHands(selectedWord);
+        startButton.SetActive(false);
     }
 
     public void CheckInput()

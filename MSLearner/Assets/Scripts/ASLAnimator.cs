@@ -135,7 +135,7 @@ public class ASLAnimator : MonoBehaviour
             if (handPrefab != null)
             {
                 //Debug.Log("Inst");
-                currentHand = Instantiate(handPrefab, new Vector3(-1.8738f, 26.137f, 130f), Quaternion.Euler(90f, 0f, 0f));
+                currentHand = Instantiate(handPrefab, new Vector3(-1.8738f, 19f, 130f), Quaternion.Euler(90f, 0f, 0f));
                 currentHand.transform.localScale *= 50f;
             }
 
