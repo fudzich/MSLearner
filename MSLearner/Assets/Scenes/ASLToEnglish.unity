@@ -1118,7 +1118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &607745613
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2117,6 +2117,7 @@ MonoBehaviour:
   y: {fileID: 5580899716650093454, guid: b5eeeffcbf9f47a41b8b832ddfbe1319, type: 3}
   z: {fileID: 145817787923260771, guid: 863b372e2ec95ff4686ce664a6e01c79, type: 3}
   transitionDuration: 1.5
+  restartButton: {fileID: 607745612}
   spinSpeed: 100
   startSpinningOnStop: 1
   instantiatePosition: {x: -0.043, y: 0.216, z: 0}
