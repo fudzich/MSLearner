@@ -14,6 +14,8 @@ public class TranslatorInputController : MonoBehaviour
     private SceneLoader sceneLoader;
     private ASLAnimator aslAnimator;
 
+    public GameObject restartButton;
+
     void Awake()
     {
         ResetInput();
@@ -23,6 +25,7 @@ public class TranslatorInputController : MonoBehaviour
 
     public void TranslateInput()
     {
+        restartButton.SetActive(false);
         currentInput = mainInputField.text;
         aslAnimator.ShowHands(currentInput.ToLower());
     }

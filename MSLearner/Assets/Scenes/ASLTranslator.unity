@@ -2968,6 +2968,7 @@ MonoBehaviour:
   mainInputField: {fileID: 1324251108}
   selectedWord: 
   currentInput: 
+  restartButton: {fileID: 1761556904}
 --- !u!4 &1966070981 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3889530657144640490, guid: b880803998d1e704bb43478d824fcbea, type: 3}
@@ -2978,9 +2979,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 602309456}
-  - {fileID: 1904448864}
   - {fileID: 593796378}
   - {fileID: 1102784075}
   - {fileID: 1320752081}
   - {fileID: 499576885}
   - {fileID: 514598236}
+  - {fileID: 1904448864}
