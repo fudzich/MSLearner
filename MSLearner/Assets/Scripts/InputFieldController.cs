@@ -13,6 +13,7 @@ public class InputFieldController : MonoBehaviour
 
     private SceneLoader sceneLoader;
     private ASLAnimator aslAnimator;
+    private ButtonAnimation buttonAnimation;
 
     public GameObject startButton;
 
@@ -29,6 +30,7 @@ public class InputFieldController : MonoBehaviour
         Debug.Log("The word is: " + selectedWord);
 
         aslAnimator = GetComponent<ASLAnimator>();
+        buttonAnimation = GetComponent<ButtonAnimation>();
     }
 
     public void StartExercise(){
@@ -43,6 +45,7 @@ public class InputFieldController : MonoBehaviour
         if (currentInput.ToLower() == selectedWord.ToLower())
         {
             Debug.Log("Correct! The word is: " + selectedWord);
+            buttonAnimation.switchButton();
             sceneLoader.LoadASLToEnglish();
         }
         else
