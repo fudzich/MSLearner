@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 65797474}
   - component: {fileID: 65797473}
   m_Layer: 0
-  m_Name: Grey Background
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,7 +183,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 74bf59bcc0583ed47954039299f816e7, type: 2}
+  - {fileID: 2100000, guid: 8fe952d982efa1d419f88fd13e7ceb9f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Back_Slide in
-  m_Speed: 0
+  m_Speed: -1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1400335583267261181}
@@ -120,7 +120,7 @@ AnimatorStateMachine:
     m_Position: {x: 400, y: 270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6275314529981891160}
-    m_Position: {x: 470, y: -20, z: 0}
+    m_Position: {x: 400, y: 130, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
