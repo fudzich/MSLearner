@@ -6,16 +6,17 @@ using UnityEngine.UI;
 
 public class InputFieldController : MonoBehaviour
 {
+    // Inputfield text
     public TMP_InputField mainInputField;
 
-    public string selectedWord; // The word selected for the current game
-    public string currentInput; // The player's current input
+    public string selectedWord; // The word selected for the current exercise
+    public string currentInput; // The users's current input
 
     private SceneLoader sceneLoader;
     private ASLAnimator aslAnimator;
     private ButtonAnimation buttonAnimation;
 
-    public GameObject startButton;
+    public GameObject startButton; // Button that acivates the hand animation and needs to be hidden after it
 
 
 
@@ -33,33 +34,38 @@ public class InputFieldController : MonoBehaviour
         buttonAnimation = GetComponent<ButtonAnimation>();
     }
 
+    // Play the 3d hand "aniamtion"
     public void StartExercise(){
         aslAnimator.ShowHands(selectedWord);
+        // turn of button that starts this process
         startButton.SetActive(false);
     }
 
+    // Method to check the correctness of inputted text
     public void CheckInput()
     {
+        // Get the text from the inputfield
         currentInput = mainInputField.text;
         
         if (currentInput.ToLower() == selectedWord.ToLower())
         {
-            Debug.Log("Correct! The word is: " + selectedWord);
+            // Stop hand animation and remove gand from screen
             aslAnimator.stopAndDestroy();
+            // Play UI slide aniamtion
             buttonAnimation.switchButton();
+            // Reload the scene
             sceneLoader.LoadASLToEnglish();
         }
         else
         {
-            Debug.Log("Incorrect. Correct word: " + selectedWord + "; You inputed: " + currentInput);
+            // Clear the input
             ResetInput();
         }
     }
 
-    // Call this method to clear the current input
+    // Method to clear the current input
     public void ResetInput()
     {
         mainInputField.text = "";
-        Debug.Log("Input has been reset.");
     }
 }

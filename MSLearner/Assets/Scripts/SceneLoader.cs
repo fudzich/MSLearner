@@ -5,21 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public float transitionTime = 4f;
-    //private ButtonAnimation ButtonAnimation;
-
-    //public static SceneLoader instance;
-
-    //private void Awake(){
-    //    if(instance == null){
-    //        instance = this;
-    //        DontDestroyOnLoad(gameObject);
-    //    }
-    //    else{
-    //        Destroy(gameObject);
-    //    }
-        
-    //}
+    public float transitionTime = 4f; // time to wait for animation of UI to fully play
 
     public void LoadASLToEnglish()
     {
@@ -57,13 +43,9 @@ public class SceneLoader : MonoBehaviour
 
     IEnumerator TransitionAndLoadScene(string sceneToLoad)
     {
-        //Debug.Log("2");
-        //ButtonAnimation = GetComponent<ButtonAnimation>();
-        //Debug.Log("3");
-        //ButtonAnimation.switchButton();
-        //Debug.Log("time started");
+        // Wait for animation to finish
         yield return new WaitForSeconds(transitionTime);
-        //Debug.Log("time ended");
+        // Load the chosen scene
         SceneManager.LoadScene(sceneToLoad);
     }
 }

@@ -6,18 +6,17 @@ public class ButtonAnimation : MonoBehaviour
 {
     public GameObject[] buttons;
 
+    //metgod to play UI animation
     public void switchButton(){
         foreach(GameObject button in buttons)
         {
             if (button != null)
             {
-                Debug.Log("button - OK");
                 Animator animator = button.GetComponent<Animator>();
                 if(animator != null)
                 {
                     bool slide = animator.GetBool("switch");
                     animator.SetBool("switch", !slide);
-                    Debug.Log("animator - OK");
                 }
             }
         }

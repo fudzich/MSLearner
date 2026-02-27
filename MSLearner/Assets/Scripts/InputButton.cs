@@ -8,14 +8,13 @@ public class InputButton : MonoBehaviour
 {
     public TMP_Text ShowText;
 
-    public string selectedWord; // The word selected for the current game
-    public string currentInput; // The player's current input
+    public string selectedWord; // The word selected for the current exercise
+    public string currentInput; // The users's current input
 
     public GameObject letterImagePrefab; // Prefab for the letter images
     public Transform container; // The container with HorizontalLayoutGroup
-    public Sprite test;
-    //public Dictionary<string, Sprite> letterSprites; // Map strings to sprites
 
+    [Header("Image of Signs Prefabs")]
     [SerializeField]
     private Sprite a;
 
@@ -103,46 +102,45 @@ public class InputButton : MonoBehaviour
 
         // Select a random word from the list
         selectedWord = WordList.words[Random.Range(0, WordList.words.Count)];
+        //Show the selected word on screen
         ShowText.text = selectedWord;
 
         sceneLoader = GetComponent<SceneLoader>();
         buttonAnimation = GetComponent<ButtonAnimation>();
     }
 
-    // Call this method when a letter button is pressed
+    // Method to add letter of pressed button to the imput
     public void AddLetter(string letter)
     {
         currentInput += letter;
-        Debug.Log("Current Input: " + currentInput);
-        // You can add additional logic here, e.g., check if input matches the word
+        // Add image whith pressed sign to the input field on screen
         applyImage(letter);
     }
 
-    // Call this method to clear the current input
+    // Method to clear the current input
     public void ResetInput()
     {
         currentInput = "";
         DeleteAllInputObjects();
-        Debug.Log("Input has been reset.");
-        // Update UI or other game elements as needed
     }
 
+    // Method to check the correctness of inputted text
     public void CheckInput()
     {
         if (currentInput.ToLower() == selectedWord.ToLower())
         {
-            Debug.Log("Correct! The word is: " + selectedWord);
-            // Handle success, e.g., load next word or show message
+            // Play the UI slide animation
             buttonAnimation.switchButton();
+            // Reload the scene
             sceneLoader.LoadEnglishToASL();
         }
         else
         {
-            Debug.Log("Incorrect. Correct word: " + selectedWord + "; You inputed: " + currentInput);
             ResetInput();
         }
     }
 
+    // Method to delete clear the inputfield on screen
     public void DeleteAllInputObjects()
     {
         GameObject[] inputObjects = GameObject.FindGameObjectsWithTag("Input");
@@ -152,6 +150,7 @@ public class InputButton : MonoBehaviour
         }
     }
 
+    // Method to add the image of a sign to the inputfield
     public void applyImage(string letter){
         GameObject newLetterImage = Instantiate(letterImagePrefab, container);
         switch (letter.ToLower())

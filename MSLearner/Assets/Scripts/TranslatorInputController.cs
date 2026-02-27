@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class TranslatorInputController : MonoBehaviour
 {
+    // Inputfield text
     public TMP_InputField mainInputField;
 
-    public string selectedWord; // The word selected for the current game
     public string currentInput; // The player's current input
 
     private SceneLoader sceneLoader;
@@ -23,17 +23,19 @@ public class TranslatorInputController : MonoBehaviour
 
     }
 
+    // Method to transalte user's input
     public void TranslateInput()
     {
         restartButton.SetActive(false);
+        // Get text from inputfield
         currentInput = mainInputField.text;
+        // Tranalate current input
         aslAnimator.ShowHands(currentInput.ToLower());
     }
 
-    // Call this method to clear the current input
+    // Method to clear the current input
     public void ResetInput()
     {
         mainInputField.text = "";
-        Debug.Log("Input has been reset.");
     }
 }

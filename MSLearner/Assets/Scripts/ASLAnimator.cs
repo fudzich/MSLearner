@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ASLAnimator : MonoBehaviour
 {
+    [Header("Hand Prefabs")]
     [SerializeField]
     private GameObject a;
 
@@ -85,28 +86,25 @@ public class ASLAnimator : MonoBehaviour
 
     [Header("Animation Settings")]
     public float transitionDuration = 1f; // Duration of transition between hands
-    public GameObject restartButton;
+    public GameObject restartButton; // Button that restarts the sign sequence
 
-    [Header("Spinning Settings")]
-    public float spinSpeed = 100f; // Speed of spinning when stopped
-    public bool startSpinningOnStop = true; // Optionally start spinning when stopped
+    public float spinSpeed = 100f; // Speed of spinning
 
-    private GameObject currentHand;
+    private GameObject currentHand; // object for the hand on screen
     private bool isAnimating = false;
     private bool isSpinning = false;
 
     public Vector3 instantiatePosition = new Vector3(-0.043f, 0.216f, 0f); // Position for instantiation
 
-    public Transform container;
     private bool isPaused = false;
 
-    private string word;
+    private string word; // chosen word for the exercise
 
+    // Method to start the 3d hand sign sequence
     public void ShowHands(string chosenWord)
     {
         word = chosenWord;
         StartCoroutine(AnimateWord(word));
-        //restartButton.onClick.AddListener(RestartAnimation);
     }
 
     private IEnumerator AnimateWord(string word)
@@ -120,28 +118,25 @@ public class ASLAnimator : MonoBehaviour
                 yield return null; // Wait for next frame
             }
             
-            // Instantiate the hand prefab for the letter
-            //Debug.Log(letter);
+            
+            // Destroy previous hand on screen if exists
             if (currentHand != null)
             {
                 Destroy(currentHand);
-                //Debug.Log("Destroy");
             }
 
-            //Debug.Log($"Processing letter: {letter}");
+            // Get the hand prefab for the letter
             GameObject handPrefab = GetHandPrefab(letter);
-            //Debug.Log($"Prefab found: {handPrefab != null}");
 
+            // Instantiate hand prefab on screen
             if (handPrefab != null)
             {
-                //Debug.Log("Inst");
                 currentHand = Instantiate(handPrefab, new Vector3(-1.8738f, 19f, 130f), Quaternion.Euler(90f, 0f, 0f));
                 currentHand.transform.localScale *= 50f;
             }
 
             // Wait for the transition duration or until stopped
             float elapsed = 0f;
-
             while (elapsed < transitionDuration && isAnimating)
             {
                 elapsed += Time.deltaTime;
@@ -153,14 +148,17 @@ public class ASLAnimator : MonoBehaviour
 
         isAnimating = false;
 
+        // Turn on restart button when hand sequence is over
         restartButton.SetActive(true);
 
-        if (currentHand != null && startSpinningOnStop)
+        // Start spinning the last sign
+        if (currentHand != null)
         {
             AddSpinComponent();
         }
     }
 
+    // Method to choose a hand prefab based on letter
     private GameObject GetHandPrefab(char letter)
     {
         switch (char.ToLower(letter))
@@ -195,6 +193,7 @@ public class ASLAnimator : MonoBehaviour
         }
     }
 
+    // Method to stop the sign sequense and spin the sign on screen
     public void StopAnimation()
     {
         if(!isPaused)
@@ -202,7 +201,6 @@ public class ASLAnimator : MonoBehaviour
             isPaused = !isPaused;
             if (currentHand != null)
             {
-                //Debug.Log("add");
                 AddSpinComponent();
             }
         }
@@ -212,12 +210,14 @@ public class ASLAnimator : MonoBehaviour
 
     }
 
+    // Method to start the sign sequence again
     public void RestartAnimation()
     {
         restartButton.SetActive(false);
         StartCoroutine(AnimateWord(word));
     }
 
+    // Method to spind the hand prefab on screen
     private void AddSpinComponent()
     {
         var spin = currentHand.GetComponent<SpinHand>();
@@ -229,6 +229,7 @@ public class ASLAnimator : MonoBehaviour
         spin.enabled = true;
     }
 
+    // Method to delete the hand prefab on screen
     public void stopAndDestroy(){
         isAnimating = false;
         if (currentHand != null)
