@@ -45,6 +45,7 @@ public class InputFieldController : MonoBehaviour
         if (currentInput.ToLower() == selectedWord.ToLower())
         {
             Debug.Log("Correct! The word is: " + selectedWord);
+            aslAnimator.stopAndDestroy();
             buttonAnimation.switchButton();
             sceneLoader.LoadASLToEnglish();
         }
