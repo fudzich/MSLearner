@@ -1,4 +1,4 @@
-ENG:
+**ENG:**
 
 A small app for visually learning ASL sign language. Optimized for web use.
 
@@ -11,7 +11,7 @@ Implemented features:
 During development, stakeholder needs were researched, which influenced the choice of implemented features and the app's appearance.
 
 
-RU:
+**RU:**
 
 Небольшое приложения для нагляного обучения языку жестов АСЛ. Оптимизировано для использования в браузе.
 
