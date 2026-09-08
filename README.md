@@ -10,6 +10,7 @@ Implemented features:
 
 During development, stakeholder needs were researched, which influenced the choice of implemented features and the app's appearance.
 
+
 RU:
 
 Небольшое приложения для нагляного обучения языку жестов АСЛ. Оптимизировано для использования в браузе.
