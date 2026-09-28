@@ -10,6 +10,8 @@ Implemented features:
 
 During development, stakeholder needs were researched, which influenced the choice of implemented features and the app's appearance.
 
+The app can be checked in web browser:
+- https://fudzich.github.io/ASLerner_BuildVersion/
 
 **RU:**
 
@@ -22,3 +24,6 @@ During development, stakeholder needs were researched, which influenced the choi
 - Небольшой ссловарь жестов
 
 При разработке проводилось исследование потребностей стейкхолдеров, что повлияло на выбор реализованных возможностей приложения и его внешний вид.
+
+Приложение можно опробовать по ссылке в браузере:
+- https://fudzich.github.io/ASLerner_BuildVersion/
